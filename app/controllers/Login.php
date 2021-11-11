@@ -4,37 +4,45 @@
     {
         public function index()
         {
-            $this -> view('giris-yap');
+            if ($this -> model('mdlUsers') -> isUserLogin('login')) {
+                header('Location: ./');
+            }else {
+                $this -> view('giris-yap');
+            }
         }
 
         public function userLogin()
         {
-            if (in_array($_SERVER['REQUEST_METHOD'], ['POST']) && isset($_POST['login-btn'])) {
+            $model = $this -> model('mdlUsers');
+            if (!$model -> isUserLogin('login')) {
+                if (in_array($_SERVER['REQUEST_METHOD'], ['POST']) && isset($_POST['login-btn'])) {
 
-                $errors = null;
-                $user = [
-                    'email' => $_POST['user-email'],
-                    'password' => $_POST['user-password']
-                ];
+                    $errors = null;
+                    $user = [
+                        'email' => $_POST['user-email'],
+                        'password' => $_POST['user-password']
+                    ];
 
-                $model = $this -> model('mdlUsers');
+                    if (!empty($user['email']) && !empty($user['password'])) {
 
-                if (!empty($user['email']) && !empty($user['password'])) {
+                        if ($model -> loginControl($user['email'], md5($user['password']))) {
+                            $_SESSION['login'] = true;
+                            header('Location: ./');
+                        }else {
+                            $errors .= '<li>E-posta veya şifre hatalı!</li>';
+                        }
 
-                    if ($model -> loginControl($user['email'], md5($user['password']))) {
-                        echo '<script>alert("")</script>';
                     }else {
-                        $errors .= '<li>E-posta veya şifre hatalı!</li>';
+                        $errors .= '<li>Lütfen boş alan bırakmayınız.</li>';
                     }
 
-                }else {
-                    $errors .= '<li>Lütfen boş alan bırakmayınız.</li>';
+                    $this -> view('/giris-yap', [
+                        'errors' => $errors
+                    ]);
+
                 }
-
-                $this -> view('/giris-yap', [
-                    'errors' => $errors
-                ]);
-
+            }else {
+                header('Location: ./');
             }
         }
     }

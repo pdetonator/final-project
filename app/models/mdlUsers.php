@@ -57,6 +57,18 @@
             if ($stmt -> rowCount() > 0) return true;
             return false;
         }
+
+        /*
+         * Is the user logged in
+         * @param string
+         * return boolean
+         */
+
+        public function isUserLogin($sessName)
+        {
+            if (isset($_SESSION[$sessName]) && $_SESSION[$sessName] === true) return true;
+            return false;
+        }
     }
 
 ?>

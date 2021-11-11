@@ -4,6 +4,8 @@
     ini_set('display_startup_errors', 1);
     error_reporting(E_ALL);
 
+    session_start();
+
     use UNLCE\Http\Router;
     use UNLCE\Http\Controller;
     use UNLCE\Http\Model;
@@ -15,4 +17,5 @@
     Router::run('/uye-ol', 'Register@userRegister', ['POST']);
     Router::run('/giris-yap', 'Login@index');
     Router::run('/giris-yap', 'Login@userLogin', ['POST']);
+
 ?>
