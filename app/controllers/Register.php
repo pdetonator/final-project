@@ -31,7 +31,7 @@
 
                 $model = $this -> model('mdlUsers');
 
-                if (empty($user['name']) || empty($user['email']) || empty($user['password']) && empty($user['tryPassword'])) {
+                if (empty($user['name']) || empty($user['email']) || empty($user['password']) && empty($user['tryPassword']))               {
                     $errors .= '<li>Lütfen boş alan bırakmayınız.</li>';
                     $status = false;
                 }else {

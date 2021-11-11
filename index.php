@@ -14,4 +14,5 @@
     Router::run('/uye-ol', 'Register@index');
     Router::run('/uye-ol', 'Register@userRegister', ['POST']);
     Router::run('/giris-yap', 'Login@index');
+    Router::run('/giris-yap', 'Login@userLogin', ['POST']);
 ?>

@@ -1,3 +1,6 @@
+<?php
+    session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,16 +114,30 @@
                 </ul>
             </div>
             <div class="forms">
+                <?php if (isset($_SESSION['register'])) : ?>
+                <div class="user__errors success">
+                    <ul>
+                        <li>Kayıt başarılı, Lütfen giriş yapınız.</li>
+                    </ul>
+                </div>
+                <?php unset($_SESSION['register']); ?>
+                <?php elseif (isset($errors) && !is_null($errors)) : ?>
+                <div class="user__errors">
+                    <ul>
+                        <?=$errors;?>
+                    </ul>
+                </div>
+                <?php endif; ?>
                 <div class="login__form form__user active">
                     <form action="" method="post">
                         <div class="input__group">
-                            <label for="login-mail">E-Mail</label>
-                            <input type="text" name="" id="login-mail" placeholder="ad.soyad@example.com">
+                            <label for="user-mail">E-Mail</label>
+                            <input type="text" name="user-email" id="user-mail" placeholder="ad.soyad@example.com" required>
                         </div>
                         <div class="input__group">
-                            <label for="login-password">E-Mail</label>
+                            <label for="user-password">E-Mail</label>
                             <div class="show__input">
-                                <input type="text" name="" id="login-password" placeholder="****">
+                                <input type="password" name="user-password" id="user-password" placeholder="****" required>
                                 <i class="fa fa-eye show-password" aria-hidden="true"></i>
                             </div>
                         </div>
@@ -133,5 +150,17 @@
 </div>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 <script src="assets/js/index.js"></script>
+<script>
+    let showPass = document.querySelectorAll('.show__input i');
+
+    showPass.forEach(icon => {
+       icon.addEventListener('click',e => {
+           let thisInput = e.target.closest('.show__input').children[0];
+
+           if (thisInput.getAttribute('type') === 'text') thisInput.setAttribute('type', 'password');
+           else thisInput.setAttribute('type', 'text');
+       })
+    });
+</script>
 </body>
 </html>

@@ -138,7 +138,7 @@
                         <div class="input__group">
                             <label for="user-tryPassword">Şifre(Tekrar)</label>
                             <div class="show__input">
-                                <input type="text" name="user-tryPassword" id="user-tryPassword" placeholder="****" required>
+                                <input type="password" name="user-tryPassword" id="user-tryPassword" placeholder="****" required>
                                 <i class="fa fa-eye show-password" aria-hidden="true"></i>
                             </div>
                         </div>
@@ -151,5 +151,17 @@
 </div>
 <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
 <script src="assets/js/index.js"></script>
+<script>
+    let showPass = document.querySelectorAll('.show__input i');
+
+    showPass.forEach(icon => {
+        icon.addEventListener('click',e => {
+            let thisInput = e.target.closest('.show__input').children[0];
+
+            if (thisInput.getAttribute('type') === 'text') thisInput.setAttribute('type', 'password');
+            else thisInput.setAttribute('type', 'text');
+        })
+    });
+</script>
 </body>
 </html>

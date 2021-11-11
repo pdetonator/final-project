@@ -39,6 +39,24 @@
             return false;
         }
 
+        /*
+         * User Login Control || Mail and Pass
+         * @param string
+         * @param string
+         * return boolean
+         */
+
+        public function loginControl($userMail, $userPassword)
+        {
+            $stmt = $this -> db -> prepare('SELECT * FROM users WHERE user_email =:mail AND user_password =:password');
+            $stmt -> execute(array(
+                'mail' => $userMail,
+                'password' => $userPassword
+            ));
+
+            if ($stmt -> rowCount() > 0) return true;
+            return false;
+        }
     }
 
 ?>
