@@ -1,0 +1,10 @@
+{
+  "autoload": {
+    "psr-4": {
+      "UNLCE\\Http\\": "app/Http"
+    },
+    "files": [
+      "app/Helper.php"
+    ]
+  }
+}
