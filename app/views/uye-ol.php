@@ -111,31 +111,38 @@
                 </ul>
             </div>
             <div class="forms">
+                <?php if (isset($errors) && !is_null($errors)) : ?>
+                <div class="user__errors">
+                    <ul>
+                        <?=$errors;?>
+                    </ul>
+                </div>
+                <?php endif; ?>
                 <div class="register__form form__user">
-                    <form action="" method="post">
+                    <form method="post">
                         <div class="input__group">
-                            <label for="register-name">İsim Soyisim</label>
-                            <input type="text" name="" id="login-mail" placeholder="ad.soyad@example.com">
+                            <label for="user-name">İsim Soyisim</label>
+                            <input type="text" name="user-fullName" id="user-name" placeholder="ad.soyad@example.com" required>
                         </div>
                         <div class="input__group">
-                            <label for="login-mail">E-Mail</label>
-                            <input type="text" name="" id="login-mail" placeholder="ad.soyad@example.com">
+                            <label for="user-mail">E-Mail</label>
+                            <input type="email" name="user-email" id="user-mail" placeholder="ad.soyad@example.com" required>
                         </div>
                         <div class="input__group">
-                            <label for="login-password">Şifre</label>
+                            <label for="user-password">Şifre</label>
                             <div class="show__input">
-                                <input type="text" name="" id="login-password" placeholder="****">
+                                <input type="password" name="user-password" id="user-password" placeholder="****" required>
                                 <i class="fa fa-eye show-password" aria-hidden="true"></i>
                             </div>
                         </div>
                         <div class="input__group">
-                            <label for="login-password">Şifre(Tekrar)</label>
+                            <label for="user-tryPassword">Şifre(Tekrar)</label>
                             <div class="show__input">
-                                <input type="text" name="" id="login-password" placeholder="****">
+                                <input type="text" name="user-tryPassword" id="user-tryPassword" placeholder="****" required>
                                 <i class="fa fa-eye show-password" aria-hidden="true"></i>
                             </div>
                         </div>
-                        <button type="submit" id="login-btn" name="login-btn">KAYIT OL</button>
+                        <button type="submit" id="register-btn" name="register-btn">KAYIT OL</button>
                     </form>
                 </div>
             </div>

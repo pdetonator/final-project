@@ -389,6 +389,25 @@ section#products {
 .container-fluid.form-container {
     padding: 50px 0;
     .user__form {
+        .user__errors {
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            background: rgba(#002556, .8);
+            border-radius: 4px;
+            ul {
+                margin: 20px;
+                padding: 10px 0;
+                li {
+                    margin: 0 20px;
+                    padding: 5px 0;
+                    list-style-type: circle;
+                    color: #fff;
+                    font-size: 15px;
+                    font-weight: 500;
+                }
+            }
+        }
         .login__form,
         .register__form {
             width: 100%;

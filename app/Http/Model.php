@@ -12,7 +12,7 @@
         public function __construct()
         {
             try {
-                $this -> db = new PDO('mysql:host=localhost;dbname=deneme', 'root', '');
+                $this -> db = new PDO('mysql:host=localhost;dbname=e-shop', 'root', '');
             }catch (PDOException $t) {
                 die($t -> getMessage());
             }
