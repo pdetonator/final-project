@@ -6,7 +6,8 @@
 
         private static $patterns = [
             ':id' => '([0-9]+)',
-            ':name' => '([a-zA-Z]+)'
+            ':name' => '([a-zA-Z]+)',
+            ':url' => '([a-zA-Z0-9-_]+)'
         ];
         public static $isNotFound = true;
 

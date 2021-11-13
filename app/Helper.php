@@ -11,4 +11,10 @@
         return htmlspecialchars(trim($post));
     },$_POST);
 
+    function site_view($name)
+    {
+        $file = __DIR__ . '/views/' . $name . '.php';
+
+        if (file_exists($file)) require $file;
+    }
 ?>

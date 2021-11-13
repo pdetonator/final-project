@@ -5,7 +5,11 @@
 
         public function index()
         {
-            $this -> view('index');
+            $model = $this -> model('mdlProduct');
+            $this -> view('index', [
+                'products' => $model -> getIndex(),
+                'model' => $model,
+            ]);
         }
 
     }
