@@ -48,6 +48,8 @@
                         </div>
                         <?php endforeach; ?>
                     </div>
+                    <?php else : ?>
+                    <div class="my-5"></div>
                     <?php endif; ?>
                     <div class="add-to__basket">
                         <button type="button" id="add-to-basket">
