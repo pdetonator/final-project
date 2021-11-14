@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost
--- Üretim Zamanı: 14 Kas 2021, 22:55:09
+-- Üretim Zamanı: 14 Kas 2021, 23:51:32
 -- Sunucu sürümü: 10.4.21-MariaDB
 -- PHP Sürümü: 8.0.12
 
@@ -34,35 +34,6 @@ CREATE TABLE `backup_userCart` (
   `option` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Tablo döküm verisi `backup_userCart`
---
-
-INSERT INTO `backup_userCart` (`id`, `user_id`, `product_id`, `option`) VALUES
-(1, 1, 2, NULL),
-(2, 1, 2, NULL),
-(3, 1, 2, NULL),
-(4, 1, 1, '128 GB'),
-(5, 1, 3, 'Mor'),
-(6, 3, 3, 'Siyah'),
-(7, 3, 3, 'Mor'),
-(8, 3, 3, 'Beyaz'),
-(9, 3, 3, 'Beyaz'),
-(10, 1, 3, 'Siyah'),
-(11, 1, 3, 'Siyah'),
-(12, 1, 3, 'Siyah'),
-(13, 1, 3, 'Mor'),
-(14, 1, 3, 'Mor'),
-(15, 1, 3, 'Gri'),
-(16, 1, 3, 'Siyah'),
-(17, 1, 3, 'Beyaz'),
-(18, 1, 3, 'Beyaz'),
-(19, 1, 3, 'Mor'),
-(20, 1, 3, 'Mor'),
-(21, 1, 3, 'Mor'),
-(22, 1, 3, 'Beyaz'),
-(23, 1, 4, 'Gri');
-
 -- --------------------------------------------------------
 
 --
@@ -81,7 +52,8 @@ CREATE TABLE `categories` (
 INSERT INTO `categories` (`id`, `category_name`) VALUES
 (1, 'Bilgisayar'),
 (2, 'Televizyon'),
-(3, 'Kulaklık');
+(3, 'Kulaklık'),
+(4, 'Ayakkabı');
 
 -- --------------------------------------------------------
 
@@ -95,7 +67,7 @@ CREATE TABLE `products` (
   `product_price` decimal(10,0) NOT NULL,
   `product_code` varchar(255) DEFAULT NULL,
   `product_category` int(11) NOT NULL,
-  `product_stock` int(11) NOT NULL,
+  `product_stock` int(11) DEFAULT NULL,
   `product_url` varchar(524) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -107,7 +79,8 @@ INSERT INTO `products` (`id`, `product_name`, `product_price`, `product_code`, `
 (1, 'ASUS X515JA CORE İ3 1005G1 1.2GHZ-4GB RAM-256GB SSD-15.6\"-INT-W10\n', '4999', NULL, 1, 10, 'asus-x515ja-core-i3-1005g1-12ghz-4gb-ram-256gb-ssd-156-int-w10'),
 (2, 'LG 48C14 48\" 121 CM 4K UHD OLED webOS SMART TV,DAHİLİ UYDU ALICI\n', '9799', NULL, 2, 0, 'lg-48c14-48-121-cm-4k-uhd-oled-webos-smart-tvdahili-uydu-alici'),
 (3, 'VESTEL 58U9510 58\'\' 146 CM 4K UHD SMART TV,DAHİLİ UYDU ALICILI\r\n', '5999', NULL, 2, 1, 'vestel-58u9510-58-146-cm-4k-uhd-smart-tvdahili-uydu-alicili'),
-(4, 'JBL T225 TWS Kablosuz Kulak İçi Bluetooth Kulaklık – Ghost Black\n', '129', NULL, 3, 999, 'jbl-free-kablosuz-kulakici-kulaklik');
+(4, 'JBL T225 TWS Kablosuz Kulak İçi Bluetooth Kulaklık – Ghost Black\n', '129', NULL, 3, 999, 'jbl-free-kablosuz-kulakici-kulaklik'),
+(5, 'adidas Hoops 2.0 Erkek Spor Ayakkabısı FY8626', '389', NULL, 4, NULL, 'adidas-hoops-20-erkek-spor-ayakkabisi-fy8626');
 
 -- --------------------------------------------------------
 
@@ -133,7 +106,17 @@ INSERT INTO `product_options` (`id`, `product_id`, `option_value`) VALUES
 (5, 3, 'Gri'),
 (6, 3, 'Mor'),
 (7, 4, 'Siyah'),
-(8, 4, 'Gri');
+(8, 4, 'Gri'),
+(9, 5, '38'),
+(10, 5, '39'),
+(11, 5, '40'),
+(12, 5, '41'),
+(13, 5, '42'),
+(14, 5, '43'),
+(15, 5, '44'),
+(16, 5, '44.5'),
+(17, 5, '45'),
+(18, 5, '45.5');
 
 -- --------------------------------------------------------
 
@@ -163,7 +146,11 @@ INSERT INTO `product_images` (`id`, `product_id`, `path`) VALUES
 (9, 4, '10962340184114.jpg'),
 (10, 4, '10962340216882.jpg'),
 (11, 4, '10962340282418.jpg'),
-(12, 4, '10962340315186.jpg');
+(12, 4, '10962340315186.jpg'),
+(21, 5, '11285957476402.jpg'),
+(22, 5, '11285957509170.jpg'),
+(23, 5, '11285957574706.jpg'),
+(24, 5, '11285957476402.jpg');
 
 -- --------------------------------------------------------
 
@@ -200,6 +187,28 @@ CREATE TABLE `user_cart` (
   `product_id` int(11) NOT NULL,
   `option` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Tablo döküm verisi `user_cart`
+--
+
+INSERT INTO `user_cart` (`id`, `user_id`, `product_id`, `option`) VALUES
+(42, 1, 4, 'Siyah'),
+(43, 1, 4, 'Gri'),
+(44, 1, 4, 'Gri'),
+(45, 1, 4, 'Siyah'),
+(46, 1, 4, 'Siyah'),
+(47, 1, 2, NULL),
+(48, 1, 2, NULL),
+(49, 1, 2, NULL),
+(50, 1, 2, NULL),
+(51, 1, 2, NULL),
+(52, 1, 4, 'Gri'),
+(53, 1, 4, 'Siyah'),
+(54, 1, 4, 'Siyah'),
+(55, 1, 4, 'Gri'),
+(56, 1, 5, '41'),
+(57, 1, 5, '44.5');
 
 --
 -- Tetikleyiciler `user_cart`
@@ -271,25 +280,25 @@ ALTER TABLE `backup_userCart`
 -- Tablo için AUTO_INCREMENT değeri `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `product_options`
 --
 ALTER TABLE `product_options`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `users`
@@ -301,7 +310,7 @@ ALTER TABLE `users`
 -- Tablo için AUTO_INCREMENT değeri `user_cart`
 --
 ALTER TABLE `user_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
