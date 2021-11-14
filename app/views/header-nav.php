@@ -1,5 +1,14 @@
-<?php require dirname(__DIR__) . '/Http/Cart.php'; ?>
-<?php $cart = new Cart(); ?>
+<?php
+    use UNLCE\Http\Controller;
+
+    require dirname(__DIR__) . '/Http/Cart.php'; 
+    
+    $cart = new Cart();
+
+    $controller = new Controller;
+    $categories = $controller -> model('mdlCategories');
+    $allCategories = $categories -> getAll();
+?>
 <header id="header">
     <div class="container">
         <div class="header-wrapper">
@@ -57,30 +66,11 @@
             </div>
             <div class="nav__items">
                 <ul>
+                    <?php foreach ($allCategories as $categories) : ?>
                     <li>
-                        <a href="#">Telefon</a>
+                        <a href="./kategori/"><?=$categories['category_name'];?></a>
                     </li>
-                    <li>
-                        <a href="#">Bilgisayar</a>
-                    </li>
-                    <li>
-                        <a href="#">Tv, Ev Elektroniği</a>
-                    </li>
-                    <li>
-                        <a href="#">Bilgisayar Parçaları</a>
-                    </li>
-                    <li>
-                        <a href="#">Foto, Kamera</a>
-                    </li>
-                    <li>
-                        <a href="#">Tv, Ev Elektroniği</a>
-                    </li>
-                    <li>
-                        <a href="#">Bilgisayar Parçaları</a>
-                    </li>
-                    <li>
-                        <a href="#">Foto, Kamera</a>
-                    </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
         </div>

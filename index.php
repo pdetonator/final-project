@@ -22,5 +22,5 @@
     Router::run('/uye/cikis-yap', 'User@userLogout', ['GET', 'POST']);
     Router::error(function () {
         echo '404';
-    })
+    });
 ?>

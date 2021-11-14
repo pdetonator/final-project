@@ -695,6 +695,7 @@ section#products {
         .product__options {
             padding: 40px 0;
             display: flex;
+            flex-wrap: wrap;
             gap: 20px;
             .option {
                 label {
