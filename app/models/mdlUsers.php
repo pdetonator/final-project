@@ -66,8 +66,19 @@
 
         public function isUserLogin($sessName)
         {
-            if (isset($_SESSION[$sessName]) && $_SESSION[$sessName] === true) return true;
+            if (isset($_SESSION['user'][$sessName]) && $_SESSION['user'][$sessName] === true) return true;
             return false;
+        }
+        
+        public function getUserId($email) 
+        {
+            $stmt = $this -> db -> prepare('SELECT * FROM users WHERE user_email =:mail');
+            $stmt -> execute(array(
+                'mail' => $email,
+            ));
+            $user = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+            if ($stmt -> rowCount() > 0) return $user['id'];
         }
     }
 

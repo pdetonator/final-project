@@ -1,3 +1,5 @@
+<?php require dirname(__DIR__) . '/Http/Cart.php'; ?>
+<?php $cart = new Cart(); ?>
 <header id="header">
     <div class="container">
         <div class="header-wrapper">
@@ -31,7 +33,7 @@
                         <a href="#">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span>SEPET</span>
-                            <div class="total__basket">0</div>
+                            <div class="total__basket"><?php if (isset($_SESSION['user']['login'])) echo $cart -> getTotalCount($_SESSION['user']['id']); else echo '0'; ?></div>
                         </a>
                     </li>
                 </ul>

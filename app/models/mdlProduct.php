@@ -106,6 +106,28 @@
             return $image['path'];
         }
 
+        public function isProduct($id)
+        {
+            $stmt = $this -> db -> prepare('SELECT * FROM products WHERE id =:id');
+            $stmt -> execute(array(
+                'id' => $id
+            ));
+
+            if ($stmt -> rowCount() > 0) return true;
+            return false;
+        }
+
+        public function fetchProduct($id) 
+        {
+            $stmt = $this -> db -> prepare('SELECT * FROM products WHERE product_id =:id');
+            $stmt -> execute(array(
+                'id' => $id
+            ));
+            $product = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+            return $product;
+        }
+
     }
 
 ?>

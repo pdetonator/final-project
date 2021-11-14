@@ -6,7 +6,7 @@
 
     session_start();
 
-    use UNLCE\Http\Router;
+    use UNLCE\Http\Router;  
     use UNLCE\Http\Controller;
     use UNLCE\Http\Model;
 
@@ -18,5 +18,5 @@
     Router::run('/giris-yap', 'Login@index');
     Router::run('/giris-yap', 'Login@userLogin', ['POST']);
     Router::run('/:url', 'Product@index', ['GET', 'POST']);
-
+    Router::run('/api/add-to-basket', 'Basket@add', ['POST']);
 ?>

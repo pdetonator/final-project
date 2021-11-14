@@ -4,7 +4,8 @@
       "UNLCE\\Http\\": "app/Http"
     },
     "files": [
-      "app/Helper.php"
+      "app/Helper.php",
+      "app/config.php"
     ]
   }
 }

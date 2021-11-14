@@ -26,7 +26,10 @@
                     if (!empty($user['email']) && !empty($user['password'])) {
 
                         if ($model -> loginControl($user['email'], md5($user['password']))) {
-                            $_SESSION['user']['login'] = true;
+                            $_SESSION['user'] = [
+                                'id' => $model -> getUserId($user['email']),
+                                'login' => true
+                            ];
                             header('Location: ./');
                         }else {
                             $errors .= '<li>E-posta veya şifre hatalı!</li>';
