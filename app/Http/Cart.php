@@ -83,7 +83,7 @@
         }
         public function getUserCart($userId)
         {
-            $stmt = $this -> db -> prepare('SELECT * FROM user_cart INNER JOIN products ON products.id = user_cart.product_id INNER JOIN product_options ON product_options.id = user_cart.option_id WHERE user_id =:userid');
+            $stmt = $this -> db -> prepare('SELECT * FROM user_cart INNER JOIN products ON products.id = user_cart.product_id INNER JOIN product_options ON product_options.id = user_cart.option_id INNER JOIN categories ON categories.id = products.product_category WHERE user_id =:userid');
             $stmt -> execute(array(
                 'userid' => $userId
             ));

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Anamakine: localhost
--- Üretim Zamanı: 14 Kas 2021, 23:51:32
+-- Üretim Zamanı: 15 Kas 2021, 15:51:40
 -- Sunucu sürümü: 10.4.21-MariaDB
 -- PHP Sürümü: 8.0.12
 
@@ -24,19 +24,6 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Tablo için tablo yapısı `backup_userCart`
---
-
-CREATE TABLE `backup_userCart` (
-  `id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `product_id` int(11) NOT NULL,
-  `option` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Tablo için tablo yapısı `categories`
 --
 
@@ -53,7 +40,8 @@ INSERT INTO `categories` (`id`, `category_name`) VALUES
 (1, 'Bilgisayar'),
 (2, 'Televizyon'),
 (3, 'Kulaklık'),
-(4, 'Ayakkabı');
+(4, 'Ayakkabı'),
+(5, 'Oyunlar Oyun Konsolları');
 
 -- --------------------------------------------------------
 
@@ -80,7 +68,8 @@ INSERT INTO `products` (`id`, `product_name`, `product_price`, `product_code`, `
 (2, 'LG 48C14 48\" 121 CM 4K UHD OLED webOS SMART TV,DAHİLİ UYDU ALICI\n', '9799', NULL, 2, 0, 'lg-48c14-48-121-cm-4k-uhd-oled-webos-smart-tvdahili-uydu-alici'),
 (3, 'VESTEL 58U9510 58\'\' 146 CM 4K UHD SMART TV,DAHİLİ UYDU ALICILI\r\n', '5999', NULL, 2, 1, 'vestel-58u9510-58-146-cm-4k-uhd-smart-tvdahili-uydu-alicili'),
 (4, 'JBL T225 TWS Kablosuz Kulak İçi Bluetooth Kulaklık – Ghost Black\n', '129', NULL, 3, 999, 'jbl-free-kablosuz-kulakici-kulaklik'),
-(5, 'adidas Hoops 2.0 Erkek Spor Ayakkabısı FY8626', '389', NULL, 4, NULL, 'adidas-hoops-20-erkek-spor-ayakkabisi-fy8626');
+(5, 'adidas Hoops 2.0 Erkek Spor Ayakkabısı FY8626', '389', NULL, 4, NULL, 'adidas-hoops-20-erkek-spor-ayakkabisi-fy8626'),
+(6, 'Sony Playstation 5 Oyun Konsolu (Eurasia garantili)\r\n', '11250', NULL, 5, 999, 'sony-playstation-5-oyun-konsolu-eurasia-garantili');
 
 -- --------------------------------------------------------
 
@@ -116,7 +105,9 @@ INSERT INTO `product_options` (`id`, `product_id`, `option_value`) VALUES
 (15, 5, '44'),
 (16, 5, '44.5'),
 (17, 5, '45'),
-(18, 5, '45.5');
+(18, 5, '45.5'),
+(19, 6, 'Beyaz'),
+(20, 6, 'Siyah');
 
 -- --------------------------------------------------------
 
@@ -150,7 +141,11 @@ INSERT INTO `product_images` (`id`, `product_id`, `path`) VALUES
 (21, 5, '11285957476402.jpg'),
 (22, 5, '11285957509170.jpg'),
 (23, 5, '11285957574706.jpg'),
-(24, 5, '11285957476402.jpg');
+(24, 5, '11285957476402.jpg'),
+(25, 6, 'd1.jpg'),
+(26, 6, 'd2.jpg'),
+(27, 6, 'd3.jpg'),
+(28, 6, 'd4.jpg');
 
 -- --------------------------------------------------------
 
@@ -173,7 +168,9 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`id`, `user_fullName`, `user_email`, `user_password`, `studet_register_date`) VALUES
 (1, 'Emrecan Ünlü', 'unl.c.emre@gmail.com', '31677e422df4bfb1d259c7adcf2339c5', '2021-11-12 11:57:29'),
 (2, 'Tutkun Turan', 'tutkun_turan123@gmail.com', '3205759388d51fc62ae5f4b833760a7b', '2021-11-13 20:48:36'),
-(3, 'huseyin kurban', 'huseyin_kurban@gmail.com', '31677e422df4bfb1d259c7adcf2339c5', '2021-11-14 21:31:11');
+(3, 'huseyin kurban', 'huseyin_kurban@gmail.com', '31677e422df4bfb1d259c7adcf2339c5', '2021-11-14 21:31:11'),
+(4, 'Berke Ozan', 'berke-ozan35@icloud.com', '6ba4bf6e993ede39c3b39523c7c88a64', '2021-11-15 11:29:09'),
+(5, 'Denem Kullanıcı', 'admin@gmail.com', '21232f297a57a5a743894a0e4a801fc3', '2021-11-15 14:12:21');
 
 -- --------------------------------------------------------
 
@@ -185,50 +182,25 @@ CREATE TABLE `user_cart` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `product_id` int(11) NOT NULL,
-  `option` varchar(255) DEFAULT NULL
+  `option_id` int(11) DEFAULT NULL,
+  `count` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Tablo döküm verisi `user_cart`
 --
 
-INSERT INTO `user_cart` (`id`, `user_id`, `product_id`, `option`) VALUES
-(42, 1, 4, 'Siyah'),
-(43, 1, 4, 'Gri'),
-(44, 1, 4, 'Gri'),
-(45, 1, 4, 'Siyah'),
-(46, 1, 4, 'Siyah'),
-(47, 1, 2, NULL),
-(48, 1, 2, NULL),
-(49, 1, 2, NULL),
-(50, 1, 2, NULL),
-(51, 1, 2, NULL),
-(52, 1, 4, 'Gri'),
-(53, 1, 4, 'Siyah'),
-(54, 1, 4, 'Siyah'),
-(55, 1, 4, 'Gri'),
-(56, 1, 5, '41'),
-(57, 1, 5, '44.5');
-
---
--- Tetikleyiciler `user_cart`
---
-DELIMITER $$
-CREATE TRIGGER `trgCartBackup` AFTER DELETE ON `user_cart` FOR EACH ROW BEGIN
-    	INSERT INTO backup_userCart(user_id, product_id, option) VALUES(OLD.user_id, OLD.product_id, OLD.option);
-    END
-$$
-DELIMITER ;
+INSERT INTO `user_cart` (`id`, `user_id`, `product_id`, `option_id`, `count`) VALUES
+(83, 1, 4, 7, 4),
+(84, 1, 4, 8, 4),
+(85, 1, 3, 3, 1),
+(86, 1, 3, 4, 1),
+(87, 1, 6, 20, 1),
+(88, 5, 6, 20, 1);
 
 --
 -- Dökümü yapılmış tablolar için indeksler
 --
-
---
--- Tablo için indeksler `backup_userCart`
---
-ALTER TABLE `backup_userCart`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Tablo için indeksler `categories`
@@ -271,46 +243,40 @@ ALTER TABLE `user_cart`
 --
 
 --
--- Tablo için AUTO_INCREMENT değeri `backup_userCart`
---
-ALTER TABLE `backup_userCart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
-
---
 -- Tablo için AUTO_INCREMENT değeri `categories`
 --
 ALTER TABLE `categories`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `products`
 --
 ALTER TABLE `products`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `product_options`
 --
 ALTER TABLE `product_options`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `product_images`
 --
 ALTER TABLE `product_images`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Tablo için AUTO_INCREMENT değeri `user_cart`
 --
 ALTER TABLE `user_cart`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=89;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
