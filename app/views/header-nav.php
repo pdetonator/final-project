@@ -39,7 +39,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="#">
+                        <a href="./sepet">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span>SEPET</span>
                             <div class="total__basket"><?php if (isset($_SESSION['user']['login'])) echo $cart -> getTotalCount($_SESSION['user']['id']); else echo '0'; ?></div>

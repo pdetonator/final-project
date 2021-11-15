@@ -17,4 +17,20 @@
 
         if (file_exists($file)) require $file;
     }
+
+    function isLogin()
+    {
+        if (isset($_SESSION['user']['login']) && $_SESSION['user']['login'] === true) return true;
+        return false;
+    }
+
+    function getLoginUser() 
+    {
+        if (isLogin()) return $_SESSION['user'];
+        return [];
+    }
+
+    function pushMessage($data) {
+        echo json_encode($data);
+    }
 ?>

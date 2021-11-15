@@ -41,6 +41,24 @@
                 exit;
             }
         }
+        public function showCart()
+        {
+            if (isLogin()) {
+                require dirname(__DIR__) . '/Http/Cart.php';
+                $cart = new Cart;
+
+                /*
+                echo json_encode($cart -> getUserCart(1));
+                */
+                echo json_encode([
+                    'total_price' => number_format($cart -> getTotalPrice(1), 0, ',', '.')
+                ]);
+            }else {
+                pushMessage([
+                    'message' => 'Lutfen giris yap.'
+                ]);
+            }
+        }
     }
 
 ?>

@@ -17,9 +17,10 @@
     Router::run('/uye-ol', 'Register@userRegister', ['POST']);
     Router::run('/giris-yap', 'Login@index');
     Router::run('/giris-yap', 'Login@userLogin', ['POST']);
-    Router::run('/:url', 'Product@index', ['GET', 'POST']);
+    Router::run('/sepet', 'Basket@showCart', ['GET', 'POST']);
     Router::run('/api/add-to-basket', 'Basket@add', ['POST']);
-    Router::run('/uye/cikis-yap', 'User@userLogout', ['GET', 'POST']);
+    Router::run('/cikis-yap', 'User@userLogout', ['GET', 'POST']);
+    Router::run('/:url', 'Product@index', ['GET', 'POST']);
     Router::error(function () {
         echo '404';
     });

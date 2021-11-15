@@ -7,14 +7,18 @@
         
         public function userLogout()
         {
-            if (isset($_SESSION['user']['login']) && $_SESSION['user']['login'] === true) {
+            if (isLogin()) {
                 unset($_SESSION['user']);
                 session_destroy();
 
-                header('Location: ./../.');
+                header('Location: ./');
                 exit;
             }else {
-                die('error');
+                pushMessage([
+                    'status' => 'error',
+                    'message' => 'Lütfen giriş yapınız.'
+                ]);
+                exit;
             }
         }
 

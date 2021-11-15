@@ -5,7 +5,7 @@ let stock = $('#product__stock');
 function getChecked() {
     let thisSelect = null;
     $(options).each((key, option) => {
-        if (option.checked) thisSelect = option.value;
+        if (option.checked) thisSelect = option.dataset.val;
     });
 
     return thisSelect;

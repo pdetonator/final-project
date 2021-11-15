@@ -44,7 +44,7 @@
                     <div class="product__options">
                         <?php foreach ($options as $key => $option) : ?>
                         <div class="option">
-                            <input type="checkbox" class="selection__product" name="option-<?=$option['option_value']?>" id="option-<?=$option['option_value']?>" value="<?=$option['option_value']?>" <?php if ($key === 0) echo 'checked'; ?> >
+                            <input type="checkbox" class="selection__product" name="option-<?=$option['option_value']?>" id="option-<?=$option['option_value']?>" value="<?=$option['id']?>" data-val="<?=$option['id'];?>" <?php if ($key === 0) echo 'checked'; ?> >
                             <label for="option-<?=$option['option_value']?>"><?=$option['option_value']?></label>
                         </div>
                         <?php endforeach; ?>

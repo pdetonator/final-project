@@ -4,11 +4,37 @@
 
     class Cart extends Model
     {
-        public function addItem($userId, $productId, $option = null)
+        public function addItem($userId, $productId, $option = null, $count = 1)
         {
-            $stmt = $this -> db -> prepare('INSERT INTO user_cart SET user_id =:userid, product_id =:productid, option =:option');
+            if ($this -> itemExist($userId, $productId, $option)) {
+                $stmt = $this -> db -> prepare('UPDATE user_cart SET count = count + 1 WHERE user_id =:userid AND product_id =:productid AND option_id =:option');
+                $stmt -> execute(array(
+                    'userid' => $userId,
+                    'productid' => $productId,
+                    'option' => $option
+                ));
+
+                if ($stmt -> rowCount() > 0) return true;
+                return false;
+            }else {
+                $stmt = $this -> db -> prepare('INSERT INTO user_cart SET user_id =:userid, product_id =:productid, option_id =:option');
+                $stmt -> execute(array(
+                    ':userid' => $userId,
+                    'productid' => $productId,
+                    'option' => $option
+                ));
+
+                if ($stmt -> rowCount() > 0) return true;
+                return false;
+            }
+
+            return false;
+        }
+        public function itemExist($userId, $productId, $option = null)
+        {
+            $stmt = $this -> db -> prepare('SELECT * FROM user_cart WHERE user_id =:userid AND product_id =:productid AND option_id =:option');
             $stmt -> execute(array(
-                ':userid' => $userId,
+                'userid' => $userId,
                 'productid' => $productId,
                 'option' => $option
             ));
@@ -27,26 +53,43 @@
             if ($stmt -> rowCount() > 0) return true;
             return false;
         }
-        public function getUserProducts($userId)
-        {
-            $stmt = $this -> db -> prepare('SELECT *, COUNT(*) as "total" FROM user_cart INNER JOIN products ON products.id = user_cart.product_id WHERE user_id =:id GROUP BY product_id;');
-            $stmt -> execute(array(
-                'id' => $userId
-            ));
-            $products = $stmt -> fetchAll(PDO::FETCH_ASSOC);
-
-            return $products;
-        }
         public function getTotalCount($userId)
         {
-           $stmt = $this -> db -> prepare('SELECT user_id, count(*) as "total" FROM user_cart WHERE user_id =:userid GROUP BY user_id');
+           $total = 0;
+
+           $stmt = $this -> db -> prepare('SELECT * FROM user_cart WHERE user_id =:userid');
            $stmt -> execute(array(
                'userid' => $userId
            ));
-           $product = $stmt -> fetch(PDO::FETCH_ASSOC);
+           $product = $stmt -> fetchAll(PDO::FETCH_ASSOC);
 
-           if ($stmt -> rowCount() > 0) return $product['total'];
-           return 0;
+           foreach ($product as $product) {
+               $total += $product['count'];
+           }
+
+           return $total;
+        }
+        public function getTotalPrice($userId)
+        {
+            $total = 0;
+
+            $userCart = $this -> getUserCart($userId);
+
+            foreach ($userCart as $cart) {
+                $total += $cart['product_price'];
+            }
+
+            return $total;
+        }
+        public function getUserCart($userId)
+        {
+            $stmt = $this -> db -> prepare('SELECT * FROM user_cart INNER JOIN products ON products.id = user_cart.product_id INNER JOIN product_options ON product_options.id = user_cart.option_id WHERE user_id =:userid');
+            $stmt -> execute(array(
+                'userid' => $userId
+            ));
+            $userCart = $stmt -> fetchAll(PDO::FETCH_ASSOC);
+
+            return $userCart;
         }
         public function removeAll($userId)
         {
