@@ -43,7 +43,14 @@
         }
         public function showCart()
         {
-            $this -> view('basket');
+            require dirname(__DIR__) . '/Http/Cart.php';
+            $cart = new Cart();
+
+            if (isLogin()) {
+                echo '<pre>';
+                print_r($cart -> getUserCart($_SESSION['user']['id']));
+                echo '</pre>';
+            }
         }
     }
 

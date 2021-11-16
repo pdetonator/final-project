@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="<?php echo get_url('assets/css/style.css'); ?>">
 </head>
 <body>
     <?php site_view('header-nav'); ?>
@@ -62,15 +62,15 @@
                 <div class="product">
                     <div class="product__header">
                         <div class="product__image">
-                            <a href="./<?=$product['product_url'];?>">
-                                <img src="assets/uploads/<?=$model -> matchImages($product['id'])?>" alt="">
+                            <a href="<?php echo get_url($product['product_url']); ?>">
+                                <img src="<?php echo get_url('assets/uploads/' . $model -> matchImages($product['id'])); ?>" alt="">
                             </a>
                         </div>
                         <div class="product__code my-2">
-                            <a href="./<?=$product['product_url'];?>"><?=$product['id'] * 32;?></a>
+                            <a href="<?php echo get_url($product['product_url']); ?>"><?=$product['id'] * 32;?></a>
                         </div>
                         <div class="product__title">
-                            <a href="./<?=$product['product_url'];?>"><?=$product['product_name'];?></a>
+                            <a href="<?php echo get_url($product['product_url']); ?>"><?=$product['product_name'];?></a>
                         </div>
                     </div>
                     <div class="product__bottom">
@@ -128,7 +128,7 @@
         </section>
     </div>
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
-    <script src="assets/js/index.js"></script>
+    <script src="<?php echo get_url('assets/js/index.js'); ?>"></script>
     <script>
         const bestSeller = new Swiper('.swiper.top-seller', {
             direction: 'horizontal',

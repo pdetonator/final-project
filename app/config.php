@@ -10,6 +10,8 @@
 
     //////////////////////////////
 
+    define('SITE_URL', 'http://localhost/final-project/');
+
     define('CIPHER', 'AES-128-ECB');
     define('CIPHER_KEY', 'e.shop_xxx');
 ?>

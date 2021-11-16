@@ -18,7 +18,7 @@
                 <div class="line-3"></div>
             </div>
             <div class="header__brand">
-                <a href="./">
+                <a href="<?php echo get_url(); ?>">
                     <img src="https://www.vatanbilgisayar.com/assets/dist/images/vatanlogo.svg" alt="">
                 </a>
             </div>
@@ -33,13 +33,13 @@
             <div class="user__items">
                 <ul>
                     <li class="active">
-                        <a href="<?php if (isset($_SESSION['user']['login'])) echo './uye-bilgilerim'; else echo './giris-yap'; ?>">
+                        <a href="<?php if (isset($_SESSION['user']['login'])) echo get_url('uye-bilgilerim'); else echo get_url('giris-yap'); ?>">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <span>HESAP</span>
                         </a>
                     </li>
                     <li>
-                        <a href="./sepet">
+                        <a href="<?php echo get_url('sepet'); ?>">
                             <i class="fa fa-shopping-cart" aria-hidden="true"></i>
                             <span>SEPET</span>
                             <div class="total__basket"><?php if (isset($_SESSION['user']['login'])) echo $cart -> getTotalCount($_SESSION['user']['id']); else echo '0'; ?></div>

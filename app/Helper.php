@@ -33,4 +33,9 @@
     function pushMessage($data) {
         echo json_encode($data);
     }
+
+    function get_url($path = null) {
+        if (!is_null($path)) return SITE_URL . $path;
+        return SITE_URL;
+    }
 ?>
