@@ -39,6 +39,13 @@
                         <?=$errors;?>
                     </ul>
                 </div>
+                <?php elseif (isset($_SESSION['change-password'])) : ?>
+                <div class="user__errors success">
+                    <ul>
+                        <li><?=$_SESSION['change-password'];?></li>
+                    </ul>
+                </div>
+                <?php unset($_SESSION['change-password']); ?>
                 <?php endif; ?>
                 <div class="login__form form__user active">
                     <form action="" method="post">

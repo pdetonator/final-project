@@ -33,7 +33,7 @@
             <div class="user__items">
                 <ul>
                     <li class="active">
-                        <a href="<?php if (isset($_SESSION['user']['login'])) echo get_url('uye-bilgilerim'); else echo get_url('giris-yap'); ?>">
+                        <a href="<?php if (isset($_SESSION['user']['login'])) echo get_url('uye-bilgileri'); else echo get_url('giris-yap'); ?>">
                             <i class="fa fa-user" aria-hidden="true"></i>
                             <span>HESAP</span>
                         </a>

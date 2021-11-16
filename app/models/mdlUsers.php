@@ -80,6 +80,51 @@
 
             if ($stmt -> rowCount() > 0) return $user['id'];
         }
+
+        public function getUser($id)
+        {
+            $stmt = $this -> db -> prepare('SELECT * FROM users WHERE id =:userid');
+            $stmt -> execute(array(
+                'userid' => $id
+            ));
+            $user = $stmt -> fetch(PDO::FETCH_ASSOC);
+
+            return $user;
+        }
+
+        public function updateName($id, $newName)
+        {
+            $stmt = $this -> db ->  prepare('UPDATE users SET user_fullName =:name WHERE id =:id');
+            $stmt -> execute(array(
+                'name' => $newName,
+                'id' => $id
+            ));
+
+            if ($stmt -> rowCount() > 0) return true;
+            return false;
+        }
+
+        public function matchPassword($password)
+        {
+            $stmt = $this -> db ->  prepare('SELECT * FROM users WHERE user_password =:password');
+            $stmt -> execute(array(
+                'password' => md5($password),
+            ));
+
+            if ($stmt -> rowCount() > 0) return true;
+            return false;
+        }
+
+        public function updatePassword($id, $password) {
+            $stmt = $this -> db ->  prepare('UPDATE users SET user_password =:password WHERE id =:id');
+            $stmt -> execute(array(
+                'password' => md5($password),
+                'id' => $id
+            ));
+
+            if ($stmt -> rowCount() > 0) return true;
+            return false;
+        }
     }
 
 ?>

@@ -20,11 +20,7 @@
     Router::run('/sepet', 'Basket@showCart', ['GET', 'POST']);
     Router::run('/api/add-to-basket', 'Basket@add', ['POST']);
     Router::run('/cikis-yap', 'User@userLogout', ['GET', 'POST']);
-    Router::run('/uye-bilgilerim', function () {
-        echo json_encode($_SESSION);
-    });
+    Router::run('/uye-bilgileri','User@userDetails');
+    Router::run('/uye-bilgileri', 'User@changeDetails', ['POST']);
     Router::run('/:url', 'Product@index', ['GET', 'POST']);
-    Router::error(function () {
-        echo '404';
-    });
 ?>
